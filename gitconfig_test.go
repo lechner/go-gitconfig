@@ -39,11 +39,12 @@ func TestGlobal(t *testing.T) {
 func TestEntire(t *testing.T) {
 	RegisterTestingT(t)
 
-	includeFilePath := includeGitConfigFile(`
+	includeFilePath, resetInclude := includeGitConfigFile(`
 [user]
     name  = deeeet
     email = deeeet@example.com
 	`)
+	defer resetInclude()
 
 	content := fmt.Sprintf(`
 [include]
